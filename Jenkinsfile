@@ -1,38 +1,40 @@
-Pipeline{
+pipeline {
+    agent any
 
-agent any{
 
-Stages{
-	Stage ('SCM Checkout'){
-	git 'https://github.com/tushverma7/maven-project.git'
-}
+    stages {
+        stage('SCM Checkout'){
+          git 'https://github.com/tushverma7/maven-project.git'
+        }
+  }
+    {
+        stage ('Compile Stage') {
 
-	Stage ('compile soure code'){
-	Steps{
-		with maven (maven : 'mymaven'){
-		sh 'mvn compile'
-}
-}
-}
+            steps {
+                withMaven(maven : 'LocalMaven') {
+                    sh 'mvn clean compile'
+                }
+            }
+        }
 
-Stage ('Test'){
-Steps{
+        stage ('Testing Stage') {
 
-	Juint
-}
-}
+            steps {
+                withMaven(maven : 'LocalMaven') {
+                    sh 'mvn test'
+                }
+            }
+        }
 
-Stage ('Package Source Code'){
-Steps{
-	sh 'mvn package'
-}
-}
 
-Stage ('Install the Source Code'){
-Steps{
-	sh 'mvn Install'
-}
-}
-}
+        stage ('install Stage') {
+            steps {
+                withMaven(maven : 'LocalMaven') {
+                    sh 'mvn install'
+                }
+            }
+        }
+
+         
 }
 }
