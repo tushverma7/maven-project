@@ -1,35 +1,35 @@
-pipeline {
+pipeline{
     agent any
 
 
-    stages {
+    stages{
         stage('SCM Checkout'){
           git 'https://github.com/tushverma7/maven-project.git'
         }
   }
     {
-        stage ('Compile Stage') {
+        stage('Compile Stage'){
 
-            steps {
-                withMaven(maven : 'mymaven') {
+            steps{
+                withMaven(maven : 'mymaven'){
                     sh 'mvn clean compile'
                 }
             }
         }
 
-        stage ('Testing Stage') {
+        stage('Testing Stage'){
 
-            steps {
-                withMaven(maven : 'mymaven') {
+            steps{
+                withMaven(maven : 'mymaven'){
                     sh 'mvn test'
                 }
             }
         }
 
 
-        stage ('install Stage') {
-            steps {
-                withMaven(maven : 'mymaven') {
+        stage('install Stage'){
+            steps{
+                withMaven(maven : 'mymaven'){
                     sh 'mvn install'
                 }
             }
