@@ -1,6 +1,6 @@
 Pipeline{
 
-any agent{
+agent any{
 
 Stages{
 	Stage ('SCM Checkout'){
@@ -9,7 +9,7 @@ Stages{
 
 	Stage ('compile soure code'){
 	Steps{
-		with maven (maven : 'Local Maven'){
+		with maven (maven : 'mymaven'){
 		sh 'mvn compile'
 }
 }
