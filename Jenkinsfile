@@ -4,7 +4,7 @@ agent any{
 
 Stages{
 	Stage ('SCM Checkout'){
-	git 'Github URL'
+	git 'https://github.com/tushverma7/maven-project.git'
 }
 
 	Stage ('compile soure code'){
